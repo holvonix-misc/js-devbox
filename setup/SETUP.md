@@ -3,8 +3,8 @@ After running setup-new-project.sh:
 ## Add project to Travis
 
 1. As user @holvonix-bot, visit: https://travis-ci.org/profile/holvonix-open and sync account.
-2. Switch ON for new-ball
-3. Visit the settings: https://travis-ci.org/holvonix-open/new-ball/settings
+2. Switch ON for js-devbox
+3. Visit the settings: https://travis-ci.org/holvonix-open/js-devbox/settings
 4. Switch ON for 'Build only if .travis.yml is present'
 5. Add a cron job: master, daily, always run.
 
@@ -13,13 +13,13 @@ After running setup-new-project.sh:
 1. As user @holvonix-bot, generate this auth token for Greenkeeper at https://github.com/settings/tokens/new
 
 * Scope: public_repo
-* Name: new-ball-GH_TOKEN_TRAVIS
+* Name: js-devbox-GH_TOKEN_TRAVIS
 * Install: `travis encrypt GH_TOKEN=token --add`
 
 2. As user @holvonix-bot, generate this auth token for Changelog generation at https://github.com/settings/tokens/new
 
 * Scope: [none]
-* Name: new-ball-GH_RO_TOKEN_TRAVIS
+* Name: js-devbox-GH_RO_TOKEN_TRAVIS
 * Install: `travis encrypt GH_RO_TOKEN=token --add`
 
 3. As user @holvonix-bot, generate or use an NPM api key:
@@ -36,9 +36,9 @@ All as user @holvonix-bot:
 
 ## Push to GitHub
 
-    git add . && git commit -m 'PROJECT SETUP FOR: new-ball
+    git add . && git commit -m 'PROJECT SETUP FOR: js-devbox
 
-    Template generated from https://github.com/holvonix-open/newball/NEWBALLHEADREF
+    Template generated from https://github.com/holvonix-open/new-ball/93419eec177b96d8eface5b5a26fd505d617fbf0
 
     ' && git push
 

@@ -1,8 +1,8 @@
 {
-  "name": "new-ball",
+  "name": "js-devbox",
   "version": "0.0.1-SNAPSHOT",
-  "private": true,
-  "description": "Template for a new yarn-based node package",
+  "private": false,
+  "description": "Some standard devDependencies we use",
   "main": "lib/index.js",
   "scripts": {
     "lint": "eslint src --fix",
@@ -11,10 +11,10 @@
     "precommit": "lint-staged && yarn prepare",
     "contrib": "./scripts/contrib.sh",
     "changelog":
-      "github-changes -o holvonix-open -r new-ball -n latest --order-semver --use-commit-body && prettier --write CHANGELOG.md",
+      "github-changes -o holvonix-open -r js-devbox -n latest --order-semver --use-commit-body && prettier --write CHANGELOG.md",
     "tidy": "yarn contrib && yarn changelog",
     "changelog-ci":
-      "github-changes -o holvonix-open -r new-ball -n latest --order-semver --use-commit-body --token $GH_RO_TOKEN && prettier --write CHANGELOG.md",
+      "github-changes -o holvonix-open -r js-devbox -n latest --order-semver --use-commit-body --token $GH_RO_TOKEN && prettier --write CHANGELOG.md",
     "tidy-ci": "yarn contrib && yarn changelog-ci",
     "prepare": "yarn lint && yarn build && yarn test"
   },
@@ -27,13 +27,13 @@
     "src/**/*.{js,jsx}": ["prettier --parser flow --write", "git add"],
     "**/*.{json,md}": ["prettier --write", "git add"]
   },
-  "homepage": "https://github.com/holvonix-open/new-ball#readme",
+  "homepage": "https://github.com/holvonix-open/js-devbox#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/holvonix-open/new-ball.git"
+    "url": "git+https://github.com/holvonix-open/js-devbox.git"
   },
   "author":
-    "Holvonix LLC and the new-ball AUTHORS <sourcecode@holvonix.com> (https://github.com/holvonix-open/new-ball)",
+    "Holvonix LLC and the js-devbox AUTHORS <sourcecode@holvonix.com> (https://github.com/holvonix-open/js-devbox)",
   "contributors": ["See AUTHORS file", "See CONTRIBUTORS file"],
   "files": [
     "lib/",
@@ -53,13 +53,13 @@
     "yarn.lock"
   ],
   "license": "Apache-2.0",
-  "devDependencies": {
+  "dependencies": {
     "babel-cli": "^6.26.0",
     "babel-core": "6.26.0",
     "babel-eslint": "8",
     "babel-jest": "^21.2.0",
     "babel-preset-flow": "^6.23.0",
-    "eslint": "^4.13.0",
+    "eslint": "^4.13.1",
     "eslint-config-airbnb-base": "^12.1.0",
     "eslint-config-prettier": "^2.9.0",
     "eslint-plugin-flowtype": "^2.40.0",
