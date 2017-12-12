@@ -1,6 +1,6 @@
 {
   "name": "js-devbox",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "private": false,
   "description": "Some standard devDependencies we use",
   "main": "lib/index.js",
@@ -11,12 +11,16 @@
     "precommit": "lint-staged && yarn prepare",
     "contrib": "./scripts/contrib.sh",
     "changelog":
-      "github-changes -o holvonix-open -r js-devbox -n latest --order-semver --use-commit-body && prettier --write CHANGELOG.md",
+      "yarn github-changes -o holvonix-open -r js-devbox -n latest --order-semver --use-commit-body && prettier --write CHANGELOG.md",
     "tidy": "yarn contrib && yarn changelog",
     "changelog-ci":
-      "github-changes -o holvonix-open -r js-devbox -n latest --order-semver --use-commit-body --token $GH_RO_TOKEN && prettier --write CHANGELOG.md",
+      "yarn github-changes -o holvonix-open -r js-devbox -n latest --order-semver --use-commit-body --token $GH_RO_TOKEN && prettier --write CHANGELOG.md",
     "tidy-ci": "yarn contrib && yarn changelog-ci",
-    "prepare": "yarn lint && yarn build && yarn test"
+    "prepare": "yarn lint && yarn build && yarn test",
+    "github-changes": "./scripts/null-github-changes.sh"
+  },
+  "bin": {
+    "github-changes": "./scripts/null-github-changes.sh"
   },
   "engines": {
     "node": ">=4.0.0",
@@ -37,6 +41,7 @@
   "contributors": ["See AUTHORS file", "See CONTRIBUTORS file"],
   "files": [
     "lib/",
+    "scripts/null-github-changes.sh",
     "CHANGELOG.md",
     "package.json",
     "LICENSE",
@@ -68,16 +73,11 @@
     "eslint-plugin-prettier": "^2.3.1",
     "flow-bin": "^0.61.0",
     "git-contributors": "^0.2.3",
-    "github-changes": "^1.1.1",
     "husky": "^0.14.3",
     "jest-cli": "21.2.1",
     "lint-staged": "^6.0.0",
     "prettier": "^1.9.1",
     "semver": "^5.4.1"
-  },
-  "resolutions": {
-    "github-changes/**/request": "^2.83.0",
-    "github-changes/**/semver": "^5.4.1"
   },
   "jest": {
     "testEnvironment": "node",

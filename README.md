@@ -15,6 +15,8 @@ Some standard devDependencies to use.
 
 `yarn add -D js-devbox`
 
+Until github-changes updates its dependencies, changelogs will be empty.
+
 ## Notice and License
 
 ```
