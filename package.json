@@ -17,10 +17,12 @@
       "yarn github-changes -o holvonix-open -r js-devbox -n latest --order-semver --use-commit-body --token $GH_RO_TOKEN && prettier --write CHANGELOG.md",
     "tidy-ci": "yarn contrib && yarn changelog-ci",
     "prepare": "yarn lint && yarn build && yarn test",
-    "github-changes": "./scripts/null-github-changes.sh"
+    "github-changes": "./scripts/null-github-changes.sh",
+    "pushver": "./scripts/pushver.sh"
   },
   "bin": {
-    "github-changes": "./scripts/null-github-changes.sh"
+    "github-changes": "./scripts/null-github-changes.sh",
+    "pushver": "./scripts/pushver.sh"
   },
   "engines": {
     "node": ">=4.0.0",
@@ -59,9 +61,9 @@
   ],
   "license": "Apache-2.0",
   "dependencies": {
-    "babel-cli": "6.26.0",
+    "babel-cli": "^6.26.0",
     "babel-core": "6.26.0",
-    "babel-eslint": "8",
+    "babel-eslint": "^8.0.0",
     "babel-jest": "^21.2.0",
     "babel-preset-flow": "^6.23.0",
     "eslint": "^4.13.1",
