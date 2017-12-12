@@ -1,7 +1,5 @@
 language: node_js
-node_js:
-- node
-- '8'
+env: MONITOR_SNYK=false
 sudo: false
 before_install:
 - curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.3.2
@@ -10,6 +8,13 @@ before_install:
 - yarn global add greenkeeper-lockfile@1
 - yarn global add coveralls
 - yarn global add codecov
+- |
+  if [[ $MONITOR_SNYK == "true" ]]; then
+    yarn global add snyk;
+    snyk auth "$SNYK_API_KEY";
+  else
+    echo Skiping snyk;
+  fi
 cache: false
 install:
 - |
@@ -28,6 +33,12 @@ script:
   fi
 - cat ./coverage/lcov.info | coveralls
 - codecov -f coverage/coverage-final.json
+- |
+  if [[ $MONITOR_SNYK == "true" ]]; then
+    snyk monitor;
+  else
+    echo Skiping snyk;
+  fi
 after_script: greenkeeper-lockfile-upload
 stages:
 - name: test
@@ -35,6 +46,17 @@ stages:
   if: tag =~ ^v AND fork = false AND type = push
 jobs:
   include:
+  - stage: test
+    node_js: node
+    env: MONITOR_SNYK=false
+  - stage: test
+    node_js: '8'
+    env: MONITOR_SNYK=true
+    if: branch = master AND type IN (push, cron)
+  - stage: test
+    node_js: '8'
+    env: MONITOR_SNYK=false
+    if: branch != master OR NOT type IN (push, cron)
   - stage: test
     if: type = cron
     node_js: '8'
@@ -73,3 +95,4 @@ env:
   - secure: g9o34ZeqqxP+b5QJLvpDUx6h4uHRsrxl9BCpXZSVyBt6bCA6kvHZ7OEoA3vFKtJt1hSyK0d22zZMEKGS7e6sJCTsir+kNNiI63F9gV8BPjBw2KZBhIY3qzCs6HXHQniWISbhlaQvVDk5lNc6CojKoNj0S3AnQvClDDiAOu1GCs1TbU17JxIr9E0CyPeMW0QmlTVFIWFrRdPzB4P6N+TElyzFzjQjlojqfTfurijdDsLC9C3OyevOjRSQsvlPdcGJq2aJzW6gs/XC+CLzy+InVl351QmA9GePe8+70jns1PxzPRf7ByEpUdnEY7+WtTXlTJGzeVnrcN3k3S6Cj1NpwGHRSitCuD0rdv24s91rQGB7Ax4v3ViXn5x13T/6ZG+aM9E4FRyxRszCTMjmmMFsPEOsUyWZePDFecSOXaEFfqgl1eGYYNd4Gdw+pa+olr8F9l8cqvL+CDmPYLsVsml6tOSZs5Fw4rg32lmfG4lD5Pa4UZ0K1Tj+++oQc3wR3mTc2l/C6Ys3qpSjaRREO8E24EzPCbJ0O5d5kTrP552qf/zKrma0j4X817a2EEpg3JZUPuxBOJHyj5nz+bXe4o+S3Fd1QH7AX54SmamkAzo/gFBFucwWpKpoQhBhVdMvAI/tsq2lnRijZ1Ex7uE5lSiKAn77HjfjVYuGnQ7UhihkbT0=
   - secure: d8hh9CYplv4Pnl9AtVYfVQliH4Rb2GYLR7tRnw0iuqw3vOMDfjtXNMuA9BpQ5S/1MaWTGyl7sgPvrNDo6FwYHDyW6lSQm3k95kckA85mkFyeIskWt2ZV95bKtnsOGIKn61mDt6/8MJx3dPiIGAaGjN5PTClCaFIR51Ev12Y/vDYf1NIalu9KLO+PIEQtcQy+petkpVZzY7nNDZpyOlK8jan7jW7PEW3/wCoGDMuhmtLuz0RR+nwfx6SwwXRNrskGKJTCZ6ZVRRUi9wwTVNnur1VSJzBNSohrdZEbLFPLaJBOBmDzyV0j2Pr715a4m9sIgxlo9xBUZtFb+V35yoh423OvwSuVRXf1yhSp/SMzR6lXddfMB6Nv4MAtaFTZ1vHFma13L46HBxwVbpELBb1mTzqF6oQez6DOUDzBlv8d2L7kLjAEME5YE983fX8AeLPM9q8ShWO6VEB/IGjmz+s7wrJ3kx+P+hU8YbYaGnAsT6TdNc+823pZ6LUNnLxD6jhPo7/gviEAvOsutlusHTLIGz9dUSvF0Oirvhwv7YcuOoU73sw2Uns02csTN0kVmTrpDfdn5O1rA9KgNR7tIwkS1GKHv8ZTNL5aYRLImqEijxMr72er93r96KfYAhthjBku2LuqoR1WUqhDGehU+3Fl8vqmz3hMbxjaE+ChbdxWha0=
   - secure: Mv32tSj3qo4A6RGGofICbb2yc7PchxbrZGFKgT9UnnUcLStO4TzJ1iUgXcNq7cGGq9+tzG3206tYk75Wxf5YqgiyPozFUwxpfybLL6E328gaKU2rJZJq/Q9rRA0y1idjCMo4van5oWffDxwR+9SYvzLtMv08wnyf/+vxv0REM657VvLF0Jqdb1nGVS0ow1160SLXzS2EGf1CGqCfv3QsvexcIk8/7RTHfKIEh8GdoVTVLPbfCML+awBGxQMcJtsk6Bf0gxRIQ0JJE9dY3QRbgL1lHQ9vontU1x/H1SRyrHh/Sjg4slH7MCeKyWpi14gk5i66+wVWBILxa9yAurVwrdJ+RW34ylQfLvyKMClnT+8GQ1rJu/W25TdcSsJtjcwkcit0TZU0JNpIj51vo1sG1RJxMocKi+WRwnft+5HYS9o6ZpnCFgr2n3lwqg8Y0PdTaZqIEFoMK+C7B6un13ldNWtUvgnuPqcs64PY7rquMqR9RrubLGihfQ4LwNCQuZW9PC2oWKtWhpxadjknAu3IFPtiSfUWV4+bzdWJj4gyNb6t3L4QA/1TcQjfOfMI8/ox3Cq09VsLSj+v6jVq3nLxQxuE9cRLj3k4kZ4N2RiZTHYGkfuMjYWFYr9Z8YBx4z3B4FHjGp2GWMc36Paf+45KKc/9TP5qY1PdUYatuNCVI2M=
+  - secure: TA3a4mUSniLpZU/mDVS5KIaqWSjQz2JLbSsmQ0m/ahTW7ssfri6nuTqyISFbmNPWMfOMcNza9uuS9L6NDaeWrLv/p3z+oPw1/PrNd8fvUamZRX88dcF8Wpyzsm33kkwsLq57s4ZbPpi+Ihkt8GISk3mfHPXH8GUfVxmhutXC0XUIoQTRn36a2f9A+b6HBcEol3k6ChmD9AqvUyoVEUIC9fTlMwvPmhgHVgOWSo1z6+pO8Njc/dKqXLAb0oZUJIAaoVQCodKn2RwRKEHTwaaoGYMZ+GmqbVT4iHFOJn1Q+fr5wkAbPw9E0DMIpWhJeaZwOlJd8IEFIUnGJcaFGpqBupN+HAt1ZRbA/0C/EE0UZANm1Ut4Dl/7wZrqORvzcj5FCOnov9UA4I+0IA+aAQe6+tkqhBNeGmkJMpjUE3rwb0Ri8SmIMZ1jwhblqAH6Fdzd8JPkP0f6mVlbNFpB/Y5da/2d0b/8F1ew3qFKs36jQwtmeqKafx2uIaUk6Q8aLs+p68zQNSA6WgcOMpaTF3sj4gPCgsLAI458kp1hqX98+Bz41rwoec2j4uxlzFl9CixBBaiVgDeh7LdYr4jqR8s0ViBE0qAhuUrYCzNKnOQGnnAEaiZN7Ak5Q74SaprrVWkYHoS4kfg2KEzMwy/mDCs+8TX0MdhpuzYiJnJa0vAWcw0=
