@@ -1,8 +1,8 @@
 #!/bin/sh
 set -euv
 VERSION=$1
-git commit -m $VERSION
-git tag -s -m $VERSION $VERSION
+git commit -m v$VERSION
+git tag -s -m v$VERSION v$VERSION
 git push public --tags || echo No public repo.
 git push --tags
 
