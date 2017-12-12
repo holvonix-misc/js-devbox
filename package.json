@@ -76,7 +76,8 @@
     "semver": "^5.4.1"
   },
   "resolutions": {
-    "github-changes/**/request": "2.83.0"
+    "github-changes/**/request": "^2.83.0",
+    "github-changes/**/semver": "^5.4.1"
   },
   "jest": {
     "testEnvironment": "node",
