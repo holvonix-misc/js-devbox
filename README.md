@@ -4,7 +4,6 @@
 [![Build Status](https://travis-ci.org/holvonix-open/js-devbox.svg?branch=master)](https://travis-ci.org/holvonix-open/js-devbox)
 [![npm version](https://badge.fury.io/js/js-devbox.svg)](https://badge.fury.io/js/js-devbox)
 [![Greenkeeper badge](https://badges.greenkeeper.io/holvonix-open/js-devbox.svg)](https://greenkeeper.io/)
-[![Coverage Status](https://coveralls.io/repos/github/holvonix-open/js-devbox/badge.svg?branch=master)](https://coveralls.io/github/holvonix-open/js-devbox?branch=master)
 [![codecov](https://codecov.io/gh/holvonix-open/js-devbox/branch/master/graph/badge.svg)](https://codecov.io/gh/holvonix-open/js-devbox)
 [![Maintainability](https://api.codeclimate.com/v1/badges/b45686c161a2bb783891/maintainability)](https://codeclimate.com/github/holvonix-open/js-devbox/maintainability)
 
