@@ -75,6 +75,9 @@
     "prettier": "^1.9.1",
     "semver": "^5.4.1"
   },
+  "resolutions": {
+    "github-changes/**/request": "2.83.0"
+  },
   "jest": {
     "testEnvironment": "node",
     "collectCoverage": true,
