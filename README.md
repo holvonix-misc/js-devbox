@@ -1,5 +1,6 @@
 # js-devbox
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/b434d7b631ed430ba888452af9f535c4)](https://www.codacy.com/app/holvonix-bot/js-devbox?utm_source=github.com&utm_medium=referral&utm_content=holvonix-open/js-devbox&utm_campaign=badger)
 [![Build Status](https://travis-ci.org/holvonix-open/js-devbox.svg?branch=master)](https://travis-ci.org/holvonix-open/js-devbox)
 [![npm version](https://badge.fury.io/js/js-devbox.svg)](https://badge.fury.io/js/js-devbox)
 [![Greenkeeper badge](https://badges.greenkeeper.io/holvonix-open/js-devbox.svg)](https://greenkeeper.io/)
