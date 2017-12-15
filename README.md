@@ -22,12 +22,13 @@ Until github-changes updates its dependencies, changelogs will be empty.
 ```
 # js-devbox
 
-Copyright (c) 2017 Holvonix LLC and the js-devbox AUTHORS
-
+This product contains software originally developed by Holvonix LLC.
 Original Repository: https://github.com/holvonix-open/js-devbox
 
+Copyright (c) 2017 Holvonix LLC. All rights reserved.
+
 Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
+you may not use this software except in compliance with the License.
 You may obtain a copy of the License at
 
    http://www.apache.org/licenses/LICENSE-2.0
