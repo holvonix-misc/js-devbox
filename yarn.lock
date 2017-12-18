@@ -1901,7 +1901,7 @@ jest-changed-files@^22.0.1:
   dependencies:
     throat "^4.0.0"
 
-jest-cli@22.0.1:
+jest-cli@^22.0.1:
   version "22.0.1"
   resolved "https://registry.yarnpkg.com/jest-cli/-/jest-cli-22.0.1.tgz#4bd19c939dd561f5cf5aa701bf779240fd5014fc"
   dependencies:
