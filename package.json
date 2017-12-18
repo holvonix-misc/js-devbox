@@ -1,6 +1,6 @@
 {
   "name": "js-devbox",
-  "version": "4.0.0",
+  "version": "5.0.0",
   "private": false,
   "description": "Some standard devDependencies we use",
   "main": "lib/index.js",
