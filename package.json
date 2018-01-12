@@ -63,7 +63,7 @@
     "babel-cli": "^6.26.0",
     "babel-core": "6.26.0",
     "babel-eslint": "^8.1.2",
-    "babel-jest": "^22.0.4",
+    "babel-jest": "^22.0.6",
     "babel-preset-flow": "^6.23.0",
     "eslint": "^4.14.0",
     "eslint-config-airbnb-base": "^12.1.0",
